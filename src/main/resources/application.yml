@@ -1,0 +1,36 @@
+spring:
+  datasource:
+    #数据库连接
+    url: jdbc:mysql://127.0.0.1:3306/test?serverTimezone=Shanghai&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false
+    #数据库连接密码
+    password: root
+    #数据库连接用户
+    username: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  thymeleaf:
+    mode: LEGACYHTML5
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+#  type-aliases-package: com.fhz.crawler.demo.entity
+  global-config:
+    banner: false
+    db-config:
+      id-type: uuid
+      field-strategy: not_null
+      table-underline: true
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#  global-config:
+#    # 关闭MP3.0自带的banner
+#    banner: false
+#    db-config:
+#      # 主键类型 0:数据库ID自增 1.未定义 2.用户输入 3 id_worker 4.uuid 5.id_worker字符串表示
+#      id-type: 0
+#      #字段策略 0:"忽略判断",1:"非 NULL 判断"),2:"非空判断"
+#      field-strategy: 1
+#      # 默认数据库表下划线命名
+#      table-underline: true
+#    configuration:
+#      map-underscore-to-camel-case: true

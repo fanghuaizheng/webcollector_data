@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>保存地址</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/easyui.css}" href="../static/css/easyui.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/icon.css}" href="../static/css/icon.css">
+    <!--    <link rel="stylesheet" type="text/css" href="../demo.css">-->
+    <script type="text/javascript" th:src="@{/js/jquery.min.js}" src="../static/js/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.easyui.min.js}" src="../static/js/jquery.easyui.min.js"></script>
+</head>
+<body>
+
+<div style="margin:20px 0;"></div>
+<a href="index" class="easyui-linkbutton"  style="width:80px">规则页</a>
+<table class="easyui-datagrid" title="文件保存展示" style="width:1200px;height:450px"
+       data-options="singleSelect:true,collapsible:true,url:'path/pageData',method:'get'"
+       rownumbers="true" pagination="true">
+    <thead>
+    <tr>
+        <th data-options="field:'fileUrl',width:600">下载地址</th>
+        <th data-options="field:'filePath',width:600">保存地址</th>
+
+    </tr>
+    </thead>
+</table>
+
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>爬取规则</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/easyui.css}" href="../static/css/easyui.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/icon.css}" href="../static/css/icon.css">
+    <!--static/css/images/accordion_arrows.png-->
+<!--    <link rel="stylesheet" type="text/css" th:href="${/css/demo.css}" href="../demo.css">-->
+    <script type="text/javascript" th:src="@{/js/jquery.min.js}" src="../static/js/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.easyui.min.js}" src="../static/js/jquery.easyui.min.js"></script>
+</head>
+<body>
+
+<div style="margin:20px 0;"></div>
+
+
+<div class="easyui-panel" title="爬取规则" style="width:100%;max-width:800px;padding:30px 60px;">
+    <form id="ff" method="post" action="match/save">
+        <input class="easyui-textbox" name="guid" id = "guid" type="hidden" >
+        <div style="margin-bottom:20px">
+            <input class="easyui-textbox" name="urls"  data-options="label:'网站集合:',required:true,prompt:'多个之间请使用英文逗号分割'" style="width:344px;height:94px" >
+        </div>
+        <div style="margin-bottom:20px">
+            <input class="easyui-textbox" name="deKey" style="width:100%" data-options="label:'关键词:',required:false">
+        </div>
+        <div style="margin-bottom:20px">
+            <select class="easyui-combobox" name="infoType" label="信息类型" style="width:100%">
+                <option value="1">文本</option>
+                <option value="2">图片</option>
+                <option value="3">音频</option>
+                <option value="4">视频</option>
+            </select>
+        </div>
+    </form>
+    <div style="text-align:center;padding:5px 0">
+        <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()" style="width:80px">确定</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()" style="width:80px">清除</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" onclick="startCrawler()" style="width:80px">开启爬虫</a>
+        <a href="filePath" class="easyui-linkbutton"  style="width:80px">文件保存</a>
+    </div>
+    <div id="w2" class="easyui-window" title="" data-options="iconCls:'icon-save'" style="width:500px;height:200px;padding:10px;">
+        正在执行
+    </div>
+</div>
+
+
+    <script>
+        $(function () {
+            $("#ff").form("load","match/findOne");
+            $("#w2").window('close');
+
+        })
+
+        function clearForm() {
+            $("#ff").form("clear")
+        }
+        
+        function submitForm() {
+            $('#ff').form('submit');
+        }
+        
+        function startCrawler() {
+
+            var guid = $("#guid").val();
+
+            $("#w2").window('open');
+
+            $.ajax({
+                type:'get',
+                url:'match/startCrawler?guid='+guid,
+                dataType:'json',
+                success:function (res) {
+                    $("#w2").window('close');
+                    alert('操作成功');
+                }
+            })
+            
+        }
+        
+
+    </script>
+
+</body>
+</html>
